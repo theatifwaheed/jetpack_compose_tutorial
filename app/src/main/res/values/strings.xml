@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Jetpack Compose Google Course</string>
+    <string name="happy_birthday_string">Happy Birthday %1$s!</string>
+</resources>
