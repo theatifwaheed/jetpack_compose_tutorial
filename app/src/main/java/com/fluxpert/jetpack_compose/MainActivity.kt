@@ -6,10 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContent
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,23 +49,26 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
             Jetpack_composeTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
-                ) {
-                    ComposeArticle(
-                        image = painterResource(R.drawable.bg_compose_background),
-                        title = "Jetpack Compose Tutorial",
-                        paragraphs = listOf(
-                            "Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, and intuitive Kotlin APIs.",
-                            "In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.",
-                        ),
-                    )
-//                    Greeting(
-//                        message = "XYZ", from = "Atif"
-//                    )
+                Scaffold { paddingValue ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(paddingValue),
+//                        color = MaterialTheme.colorScheme.background,
+                    ) {
+                        ComposeArticle(
+                            image = painterResource(R.drawable.bg_compose_background),
+                            title = "Jetpack Compose Tutorial",
+                            paragraphs = listOf(
+                                "Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, and intuitive Kotlin APIs.",
+                                "In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.",
+                            ),
+                        )
+                    }
                 }
+
             }
         }
     }
@@ -96,9 +103,9 @@ fun XTitle(title: String, modifier: Modifier) {
     Text(
         text = title,
         fontSize = 20.sp,
-        color = Color.Black,
+//        color = MaterialTheme.colorScheme.onBackground,
         textAlign = TextAlign.Center,
-        modifier = modifier
+        modifier = modifier,
     )
 }
 
@@ -107,7 +114,7 @@ fun XParagraph(message: String, modifier: Modifier) {
     Text(
         text = message,
         fontSize = 12.sp,
-        color = Color.Black,
+//        color = MaterialTheme.colorScheme.onBackground,
         textAlign = TextAlign.Justify,
         modifier = modifier
     )
@@ -191,3 +198,21 @@ fun XParagraph(message: String, modifier: Modifier) {
 //    }
 //    return "Hello $name, you're $age year$ageS old";
 //}
+
+//                Surface(
+//                    modifier = Modifier
+//                        .fillMaxSize(),
+////                        .safeContentPadding(),
+//                ) {
+//                    ComposeArticle(
+//                        image = painterResource(R.drawable.bg_compose_background),
+//                        title = "Jetpack Compose Tutorial",
+//                        paragraphs = listOf(
+//                            "Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, and intuitive Kotlin APIs.",
+//                            "In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.",
+//                        ),
+//                    )
+////                    Greeting(
+////                        message = "XYZ", from = "Atif"
+////                    )
+//                }
