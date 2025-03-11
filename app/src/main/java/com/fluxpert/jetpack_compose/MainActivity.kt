@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -38,79 +39,131 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    Greeting(
-                        message = "XYZ", from = "Atif"
-                    )
-                }
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
+//                        message = "XYZ", from = "Atif"
 //                    )
-//                }
+                }
             }
         }
     }
 }
 
 @Composable
-fun Greeting(message: String, from: String, modifier: Modifier = Modifier) {
-    val image = painterResource(R.drawable.androidparty)
-
-    Box(modifier) {
+fun ComposeArticle(
+    image: Painter,
+    title: String,
+    paragraphs: List<String>,
+    modifier: Modifier = Modifier
+) {
+    val textModifier: Modifier = Modifier.padding(
+        start = 16.dp,
+        top = 10.dp,
+        end = 16.dp,
+    );
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Top,
+    ) {
         Image(
             painter = image,
             contentDescription = null,
-            contentScale = ContentScale.Crop,
-            alpha = 0.5F,
+            contentScale = ContentScale.FillWidth,
         )
-        GreetingText(
-            message = message, from = from,
-            /// Can Also do this
-//            modifier = Modifier.padding(
-//                start = 16.dp,
-//                top = 16.dp,
-//                end = 16.dp,
-//                bottom = 16.dp,
-//            )
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    50.dp
-                )
-
-        )
+        XTitle(title = title, modifier = textModifier)
+        paragraphs.map { pg ->
+            XParagraph(message = pg, modifier = textModifier)
+        }
     }
-
 }
 
 @Composable
-fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Text(
-            text = stringResource(R.string.happy_birthday_string, message),
-            fontSize = 80.sp,
-            lineHeight = 100.sp,
-            textAlign = TextAlign.Center,
-        )
-        Text(
-            text = stringResource(R.string.from_text, from),
-            fontSize = 36.sp,
-            modifier = Modifier
-                .padding(16.dp)
-                .align(alignment = Alignment.End)
-        )
-    }
+fun XTitle(title: String, modifier: Modifier) {
+    Text(
+        text = title,
+        fontSize = 20.sp,
+        color = Color.Black,
+        textAlign = TextAlign.Center,
+        modifier = modifier
+    )
 }
+
+@Composable
+fun XParagraph(message: String, modifier: Modifier) {
+    Text(
+        text = message,
+        fontSize = 12.sp,
+        color = Color.Black,
+        textAlign = TextAlign.Justify,
+        modifier = modifier
+    )
+}
+
+//@Composable
+//fun Greeting(message: String, from: String, modifier: Modifier = Modifier) {
+//    val image = painterResource(R.drawable.androidparty)
+//
+//    Box(modifier) {
+//        Image(
+//            painter = image,
+//            contentDescription = null,
+//            contentScale = ContentScale.Crop,
+//            alpha = 0.5F,
+//        )
+//        GreetingText(
+//            message = message, from = from,
+//            /// Can Also do this
+////            modifier = Modifier.padding(
+////                start = 16.dp,
+////                top = 16.dp,
+////                end = 16.dp,
+////                bottom = 16.dp,
+////            )
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(
+//                    50.dp
+//                )
+//
+//        )
+//    }
+//
+//}
+
+//@Composable
+//fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+//    Column(
+//        modifier = modifier,
+//        verticalArrangement = Arrangement.Center,
+//    ) {
+//        Text(
+//            text = stringResource(R.string.happy_birthday_string, message),
+//            fontSize = 80.sp,
+//            lineHeight = 100.sp,
+//            textAlign = TextAlign.Center,
+//        )
+//        Text(
+//            text = stringResource(R.string.from_text, from),
+//            fontSize = 36.sp,
+//            modifier = Modifier
+//                .padding(16.dp)
+//                .align(alignment = Alignment.End)
+//        )
+//    }
+//}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     Jetpack_composeTheme {
-        Greeting("Atif", "Android")
+//        Greeting("Atif", "Android")
+        ComposeArticle(
+            image = painterResource(R.drawable.bg_compose_background),
+            title = "Jetpack Compose Tutorial",
+            paragraphs = listOf(
+                "Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, and intuitive Kotlin APIs.",
+                "In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.",
+            ),
+        )
     }
 }
 
