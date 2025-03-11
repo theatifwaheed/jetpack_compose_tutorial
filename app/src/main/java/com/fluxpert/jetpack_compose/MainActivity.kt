@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background,
                 ) {
                     Greeting(
-                        message = "Android", from = "Atif"
+                        message = "XYZ", from = "Atif"
                     )
                 }
 //                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -65,8 +65,7 @@ fun Greeting(message: String, from: String, modifier: Modifier = Modifier) {
             alpha = 0.5F,
         )
         GreetingText(
-            message = message,
-            from = from,
+            message = message, from = from,
             /// Can Also do this
 //            modifier = Modifier.padding(
 //                start = 16.dp,
@@ -76,7 +75,9 @@ fun Greeting(message: String, from: String, modifier: Modifier = Modifier) {
 //            )
             modifier = Modifier
                 .fillMaxSize()
-                .padding(8.dp)
+                .padding(
+                    50.dp
+                )
 
         )
     }
@@ -96,7 +97,7 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
             textAlign = TextAlign.Center,
         )
         Text(
-            text = "from $from",
+            text = stringResource(R.string.from_text, from),
             fontSize = 36.sp,
             modifier = Modifier
                 .padding(16.dp)
