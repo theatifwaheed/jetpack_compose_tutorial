@@ -65,9 +65,19 @@ fun Greeting(message: String, from: String, modifier: Modifier = Modifier) {
             alpha = 0.5F,
         )
         GreetingText(
-            message = message, from = from, modifier = Modifier
+            message = message,
+            from = from,
+            /// Can Also do this
+//            modifier = Modifier.padding(
+//                start = 16.dp,
+//                top = 16.dp,
+//                end = 16.dp,
+//                bottom = 16.dp,
+//            )
+            modifier = Modifier
                 .fillMaxSize()
                 .padding(8.dp)
+
         )
     }
 
