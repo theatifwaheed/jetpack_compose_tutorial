@@ -24,6 +24,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fluxpert.jetpack_compose.ui.theme.Jetpack_composeTheme
 
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Jetpack_composeTheme {
+//        Greeting("Atif", "Android")
+        ComposeArticle(
+            image = painterResource(R.drawable.bg_compose_background),
+            title = "Jetpack Compose Tutorial",
+            paragraphs = listOf(
+                "Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, and intuitive Kotlin APIs.",
+                "In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.",
+            ),
+        )
+    }
+}
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +50,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
+                    ComposeArticle(
+                        image = painterResource(R.drawable.bg_compose_background),
+                        title = "Jetpack Compose Tutorial",
+                        paragraphs = listOf(
+                            "Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, and intuitive Kotlin APIs.",
+                            "In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.",
+                        ),
+                    )
 //                    Greeting(
 //                        message = "XYZ", from = "Atif"
 //                    )
@@ -47,9 +71,10 @@ class MainActivity : ComponentActivity() {
 fun ComposeArticle(
     image: Painter, title: String, paragraphs: List<String>, modifier: Modifier = Modifier
 ) {
-    val textModifier: Modifier = Modifier.padding(
-        start = 16.dp, top = 10.dp, end = 16.dp
-    )
+    val textModifier: Modifier = Modifier
+        .padding(
+            start = 16.dp, top = 10.dp, end = 16.dp
+        )
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Top,
@@ -140,22 +165,6 @@ fun XParagraph(message: String, modifier: Modifier) {
 //        )
 //    }
 //}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Jetpack_composeTheme {
-//        Greeting("Atif", "Android")
-        ComposeArticle(
-            image = painterResource(R.drawable.bg_compose_background),
-            title = "Jetpack Compose Tutorial",
-            paragraphs = listOf(
-                "Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, and intuitive Kotlin APIs.",
-                "In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.",
-            ),
-        )
-    }
-}
 
 
 /// Just programming code for learning.
